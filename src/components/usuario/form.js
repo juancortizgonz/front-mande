@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Routes, Route, useNavigate} from 'react-router-dom';
 import Axios from 'axios';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -17,6 +18,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme();
 
 function Form() {
+  const navigate = useNavigate();
   const url = "http://localhost:3001/api/v1/usuarios";
   const [data, setData] = useState({
     nombre_usuario: "",
@@ -39,6 +41,7 @@ function Form() {
     })
     .then(res => {
       console.log(res.data);
+      navigate('/panel');
     })
   }
 
