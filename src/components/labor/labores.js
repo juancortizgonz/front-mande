@@ -1,5 +1,6 @@
 import { Diversity1TwoTone } from '@mui/icons-material';
 import React, { useState, useEffect }  from 'react';
+import { Link } from 'react-router-dom';
 
 const Labores = () => {
 
@@ -27,11 +28,13 @@ const Labores = () => {
     } else {
         return (
           <div>
+                <h1>Lista de labores existentes</h1>
                 {labores.map(labor => (
                 <>
                   <h2>{labor.nombre_labor}</h2>
                   <p>{labor.descripcion_labor}</p>
                   <p>Unidad de labor: <strong>{labor.unidad_labor}</strong></p>
+                  <Link to={`/${labor.id_labor}`}>Detalles de la labor.</Link>
                 </>
                 ))}
           </div>

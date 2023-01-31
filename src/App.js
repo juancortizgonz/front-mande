@@ -1,9 +1,10 @@
 import {BrowserRouter, Routes, Route}from 'react-router-dom'
-import Home from "./components/home"
+import Login from "./components/login"
 import NavBar from "./components/navbar"
-import Form from "./components/form"
-import LaborForm from "./components/laborForm";
+import Form from "./components/usuario/form"
+import LaborForm from "./components/labor/laborForm";
 import Labores from "./components/labor/labores";
+import Inicio from "./components/inicio";
 import {Container} from '@mui/material'
 
 
@@ -13,7 +14,8 @@ export default function App(){
    <NavBar/>
    <Container>
     <Routes>
-      <Route path='/' element={< Home />}/>
+      <Route path='/' element={< Inicio />}/>
+      <Route path='/login' element={< Login />}/>
       <Route path='/registro' element={< Form />}/>
       <Route path='/crear-labor' element={< LaborForm />}/>
       <Route path='/labores' element={< Labores />}/>
