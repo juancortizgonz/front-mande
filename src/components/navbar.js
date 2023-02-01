@@ -14,8 +14,9 @@ export default function NavBar() {
                 </Link>
                 
               </Typography>
-              <Button variant='' title="Conoce más sobre Mande" onClick={()=> navigate("/registro") }>¿Qué es Mande?</Button>
-              <Button variant='' title="Contacta nuestro equipo" onClick={()=> navigate("/registro") }>Contacto</Button>
+              <Button variant='' title="Labores" onClick={()=> navigate("/labores") }>Labores</Button>
+              <Button variant='' title="Crear labor" onClick={()=> navigate("/crear-labor") }>Crear labor</Button>
+
               <Button variant='' title="Registro de usuario" onClick={()=> navigate("/registro") }>Registrarse</Button>
               <Button variant='' title="Ingresar a tu cuenta" onClick={()=> navigate("/login") }>Ingresar</Button>
             </Toolbar>

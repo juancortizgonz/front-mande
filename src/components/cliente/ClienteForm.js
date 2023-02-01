@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import Axios from 'axios';
+import axios from 'axios';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -17,21 +17,36 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme();
 
-function LaborForm() {
+function ClienteForm() {
   const navigate = useNavigate();
-  const url = "http://localhost:3001/api/v1/labores";
+  const endpoint = "http://localhost:3001/api/v1/clientes/form";
+  const url = "http://localhost:3001/api/v1/clientes";
   const [data, setData] = useState({
-    nombre: "",
-    descripcion: "",
-    unidad: ""
+    recibo: "",
+    lat_dir: "",
+    lon_dir: "",
+    id_usuario: ""
   });
+  const [cliente, setCliente] = useState([]);
+  const [emailSeleccionado, setEmailSeleccionado] = useState({
+    email:""
+  });
+  let id_usuario_get = 1;
+
 
   function submit(e) {
     e.preventDefault();
-    Axios.post(url, {
-      nombre: data.nombre,
-      descripcion: data.descripcion,
-      unidad: data.unidad
+    axios.get(endpoint).then((response) => {
+        const dataGet = response.data;
+        setCliente(dataGet);
+        console.log(dataGet);
+    }
+    )
+    axios.post(url, {
+      recibo: data.nombre,
+      lat_dir: data.lat_dir,
+      lon_dir: data.lon_dir,
+      id_usuario: id_usuario_get
     })
       .then(res => {
         console.log(res.data);
@@ -44,6 +59,14 @@ function LaborForm() {
     setData(newData);
     console.log(newData);
   }
+
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+    setEmailSeleccionado(prevState=>({
+        ...prevState,
+        [name]: value
+    }));
+    };
 
   return (
     <div>
@@ -59,18 +82,18 @@ function LaborForm() {
             }}
           >
             <Typography component="h1" variant="h5">
-              Crear nueva labor
+              Registro cliente
             </Typography>
             <Box component="form" noValidate onSubmit={(e) => submit(e)} sx={{ mt: 3 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
                     autoComplete="given-name"
-                    name="nombre"
+                    name="recibo"
                     required
                     fullWidth
-                    id="nombre"
-                    label="Nombre"
+                    id="recibo"
+                    label="Recibo"
                     autoFocus
                     onChange={(e) => handle(e)}
                   />
@@ -79,9 +102,9 @@ function LaborForm() {
                   <TextField
                     required
                     fullWidth
-                    id="descripcion"
-                    label="Descripción"
-                    name="descripcion"
+                    id="lat_dir"
+                    label="Latitud"
+                    name="lat_dir"
                     autoComplete="family-name"
                     onChange={(e) => handle(e)}
                   />
@@ -90,11 +113,20 @@ function LaborForm() {
                   <TextField
                     required
                     fullWidth
-                    id="unidad"
-                    label="Unidad"
-                    type="unidad"
-                    name="unidad"
+                    id="lon_dir"
+                    label="Longitud"
+                    name="lon_dir"
                     onChange={(e) => handle(e)}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email"
+                    name="email"
+                    onChange={handleChange}
                   />
                 </Grid>
               </Grid>
@@ -121,4 +153,4 @@ function LaborForm() {
   )
 }
 
-export default LaborForm;
+export default ClienteForm;

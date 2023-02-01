@@ -37,7 +37,6 @@ function Form() {
     })
       .then(res => {
         console.log(res.data);
-        navigate('/registro-menu');
       })
   }
 
