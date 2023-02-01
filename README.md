@@ -1,3 +1,13 @@
+# Importante para ejecución
+
+Para poder ejecutar el proyecto es necesario realizar la instalación de las dependencias y los paquetes a través de npm.
+
+Sin embargo, algunas dependencias usadas aquí tienen conflictos con la versión de Node.js.
+
+Usar: 'npm install --legacy-peer-deps' **Importante**
+
+Posteriormente se puede ejecutar usando 'npm start'
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
