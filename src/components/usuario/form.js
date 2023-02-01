@@ -21,27 +21,23 @@ function Form() {
   const navigate = useNavigate();
   const url = "http://localhost:3001/api/v1/usuarios";
   const [data, setData] = useState({
-    nombre_usuario: "",
-    email_usuario: "",
-    password_usuario: "",
-    direccion_usuario: "",
-    path_doc: "",
-    telefono_usuario: ""
+    nombre: "",
+    email: "",
+    telefono: "",
+    psw: ""
   });
 
   function submit (e) {
     e.preventDefault();
     Axios.post(url, {
-      nombre_usuario: data.nombre_usuario,
-      email_usuario: data.email_usuario,
-      password_usuario: data.password_usuario,
-      direccion_usuario: data.direccion_usuario,
-      path_doc: data.path_doc,
-      telefono_usuario: data.telefono_usuario
+      nombre: data.nombre,
+      email: data.email,
+      telefono: data.telefono,
+      psw: data.psw
     })
     .then(res => {
       console.log(res.data);
-      navigate('/panel');
+      navigate('/registro-menu');
     })
   }
 
@@ -76,10 +72,10 @@ function Form() {
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
-                  name="nombre_usuario"
+                  name="nombre"
                   required
                   fullWidth
-                  id="nombre_usuario"
+                  id="nombre"
                   label="Nombre"
                   autoFocus
                   onChange={(e) => handle(e)}
@@ -89,9 +85,9 @@ function Form() {
                 <TextField
                   required
                   fullWidth
-                  id="email_usuario"
+                  id="email"
                   label="Email"
-                  name="email_usuario"
+                  name="email"
                   autoComplete="family-name"
                   onChange={(e) => handle(e)}
                 />
@@ -100,48 +96,25 @@ function Form() {
                 <TextField
                   required
                   fullWidth
-                  id="password_usuario"
-                  label="Password"
-                  type="password"
-                  name="password_usuario"
-                  autoComplete="email"
-                  onChange={(e) => handle(e)}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="direccion_usuario"
-                  label="Dirección"
-                  id="direccion_usuario"
-                  autoComplete="new-password"
-                  onChange={(e) => handle(e)}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="path_doc"
-                  label="Path doc"
-                  id="path_doc"
-                  autoComplete="new-password"
-                  onChange={(e) => handle(e)}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="telefono_usuario"
+                  id="telefono"
                   label="Telefono"
-                  id="telefono_usuario"
-                  autoComplete="new-password"
+                  type="text"
+                  name="telefono"
                   onChange={(e) => handle(e)}
                 />
               </Grid>
-            </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="psw"
+                  label="Password"
+                  id="psw"
+                  type="password"
+                  onChange={(e) => handle(e)}
+                />
+              </Grid>
+              </Grid>
             <Button
               type="submit"
               fullWidth
